@@ -1,0 +1,165 @@
+:root {
+    /* Chrome OS Light Theme Colors */
+    --bg-base: #F1F3F4;
+    --bg-surface: #FFFFFF;
+    --text-main: #202124;
+    --text-muted: #5F6368;
+    --accent: #1A73E8;
+    --accent-hover: #174EA6;
+    --border: #DADCE0;
+    --radius-lg: 16px;
+    --radius-sm: 8px;
+    --sidebar-width: 280px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-base);
+    color: var(--text-main);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+}
+
+#app-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 8px; /* Відступи Chrome OS */
+    gap: 8px;
+}
+
+/* Сайдбар */
+#sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, width 0.3s ease;
+    overflow: hidden;
+}
+
+#sidebar.hidden {
+    transform: translateX(-120%);
+    width: 0;
+    margin-right: -8px;
+}
+
+.sidebar-header {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.sidebar-header h2 { font-size: 14px; font-weight: 500; }
+.sidebar-header button { background: none; border: none; cursor: pointer; font-size: 16px; }
+
+#file-tree {
+    padding: 8px;
+    overflow-y: auto;
+    font-size: 13px;
+}
+
+.tree-item {
+    padding: 6px 8px;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.tree-item:hover { background-color: var(--bg-base); }
+.tree-item.active { background-color: #E8F0FE; color: var(--accent); }
+
+/* Зона редактора */
+#editor-container {
+    flex: 1;
+    background-color: var(--bg-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+/* Стрічка файлів */
+.file-block {
+    min-height: 50vh;
+    padding: 24px;
+    border-bottom: 2px dashed var(--border);
+}
+
+.file-separator {
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.file-separator::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--border);
+}
+
+.code-area {
+    width: 100%;
+    min-height: 200px;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-main);
+    background: transparent;
+}
+
+/* Статус бар */
+#status-bar {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    width: var(--sidebar-width);
+    background-color: var(--bg-surface);
+    border-radius: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    transition: transform 0.3s ease;
+    z-index: 100;
+}
+
+#sidebar.hidden ~ #status-bar {
+    transform: translateY(150%); /* Ховаємо разом із сайдбаром */
+}
+
+/* Діалог */
+dialog {
+    margin: auto;
+    padding: 24px;
+    border: none;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    width: 400px;
+}
+dialog::backdrop { background: rgba(0,0,0,0.4); }
+dialog input { width: 100%; padding: 8px; margin: 16px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.dialog-actions { display: flex; justify-content: flex-end; gap: 8px; }
+button { padding: 8px 16px; border: none; border-radius: var(--radius-sm); cursor: pointer; font-weight: 500; }
+button.primary { background-color: var(--accent); color: white; }
+button.primary:hover { background-color: var(--accent-hover); }
