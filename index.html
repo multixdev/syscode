@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MULTIX System Code</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app-container">
+        <aside id="sidebar">
+            <div class="sidebar-header">
+                <h2>MULTIX OS</h2>
+                <button id="btn-sync" title="Sync with GitHub">🔄</button>
+            </div>
+            <div id="file-tree"></div>
+        </aside>
+
+        <main id="editor-container">
+            <div id="editors-stream">
+                </div>
+        </main>
+
+        <div id="status-bar">
+            <span id="status-icon">✅</span>
+            <span id="status-text">Збережено</span>
+        </div>
+    </div>
+
+    <dialog id="commit-dialog">
+        <h3>Push to GitHub</h3>
+        <input type="text" id="commit-msg" placeholder="Commit message...">
+        <div class="dialog-actions">
+            <button id="btn-cancel-commit">Скасувати</button>
+            <button id="btn-push" class="primary">Commit & Push</button>
+        </div>
+    </dialog>
+
+    <script src="app.js"></script>
+</body>
+</html>
