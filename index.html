@@ -6,13 +6,14 @@
     <title>MULTIX System Code</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <div id="app-container">
         <aside id="sidebar">
             <div class="sidebar-header">
                 <h2>MULTIX OS</h2>
-                <button id="btn-sync" title="Sync with GitHub">🔄</button>
+                <button id="btn-open-dir" title="Відкрити робочий простір">📁 Відкрити</button>
             </div>
             <div id="file-tree"></div>
         </aside>
@@ -38,5 +39,12 @@
     </dialog>
 
     <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js');
+            });
+        }
+    </script>
 </body>
 </html>
